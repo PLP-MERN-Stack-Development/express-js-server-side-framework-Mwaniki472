@@ -1,62 +1,147 @@
-# Express.js RESTful API Assignment
+# 🛒 Product API (Express.js + MongoDB)
 
-This assignment focuses on building a RESTful API using Express.js, implementing proper routing, middleware, and error handling.
+This is a simple **RESTful API** built using **Node.js**, **Express.js**, and **MongoDB** for managing product data.  
+It supports CRUD operations and includes middleware for logging, authentication, and error handling.
 
-## Assignment Overview
+---
 
-You will:
-1. Set up an Express.js server
-2. Create RESTful API routes for a product resource
-3. Implement custom middleware for logging, authentication, and validation
-4. Add comprehensive error handling
-5. Develop advanced features like filtering, pagination, and search
+## 🚀 Features
 
-## Getting Started
+- Full CRUD (Create, Read, Update, Delete) for products
+- MongoDB for persistent storage
+- Middleware for:
+  - Request logging
+  - API key authentication
+  - Centralized error handling
+- `.env` configuration support
+- Pagination, filtering, and search
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Install dependencies:
-   ```
-   npm install
-   ```
-4. Run the server:
-   ```
-   npm start
-   ```
+---
 
-## Files Included
+## 📁 Project Structure
 
-- `Week2-Assignment.md`: Detailed assignment instructions
-- `server.js`: Starter Express.js server file
-- `.env.example`: Example environment variables file
+project-folder/
+├── middleware/
+│ ├── auth.js
+│ ├── errorHandler.js
+│ └── logger.js
+├── models/
+│ └── Product.js
+├── routes/
+│ └── productRoutes.js
+├── .env
+├── .gitignore
+├── package.json
+├── server.js
+└── README.md
 
-## Requirements
 
-- Node.js (v18 or higher)
-- npm or yarn
-- Postman, Insomnia, or curl for API testing
 
-## API Endpoints
+---
 
-The API will have the following endpoints:
+## ⚙️ Setup Instructions
 
-- `GET /api/products`: Get all products
-- `GET /api/products/:id`: Get a specific product
-- `POST /api/products`: Create a new product
-- `PUT /api/products/:id`: Update a product
-- `DELETE /api/products/:id`: Delete a product
+### 1️⃣ Prerequisites
 
-## Submission
+- [Node.js](https://nodejs.org/en/) installed
+- [MongoDB Atlas](https://www.mongodb.com/atlas) account or a local MongoDB instance
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+---
 
-1. Complete all the required API endpoints
-2. Implement the middleware and error handling
-3. Document your API in the README.md
-4. Include examples of requests and responses
+### 2️⃣ Install Dependencies
 
-## Resources
 
-- [Express.js Documentation](https://expressjs.com/)
-- [RESTful API Design Best Practices](https://restfulapi.net/)
-- [HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) 
+npm install
+3️⃣ Configure Environment Variables
+Create a file named .env in the project root:
+
+env
+
+PORT=3000
+MONGO_URI=mongo db connection string
+API_KEY=your secret key
+🔒 Never share your .env file or push it to GitHub.
+Add it to .gitignore.
+
+4️⃣ Start the Server
+
+node server.js
+
+dotenv] injecting env (3) from .env
+Connected to MongoDB ✅
+Server is running on http://localhost:3000
+🧠 API Routes
+Method	Endpoint	Description
+GET	/api/products	Retrieve all products
+GET	/api/products/:id	Retrieve a single product
+POST	/api/products	Add a new product
+PUT	/api/products/:id	Update a product
+DELETE	/api/products/:id	Delete a product
+
+🔐 Authentication
+All routes require an API key header:
+
+Header	Example
+x-api-key	secretkey123
+
+If the API key is missing or incorrect, the server returns:
+
+
+{ "error": "Unauthorized - missing/invalid API key" }
+🧪 Example POST Request
+URL:
+
+
+POST http://localhost:3000/api/products
+Headers:
+
+
+x-api-key: secretkey123
+Content-Type: application/json
+Body:
+
+
+{
+  "name": "Wireless Mouse",
+  "description": "Ergonomic design, rechargeable battery",
+  "price": 35,
+  "category": "electronics",
+  "inStock": true
+}
+Response:
+
+{
+  "_id": "60af8f9c5b8c3a001f7d9b88",
+  "name": "Wireless Mouse",
+  "description": "Ergonomic design, rechargeable battery",
+  "price": 35,
+  "category": "electronics",
+  "inStock": true,
+  "__v": 0
+}
+🧰 Tech Stack
+Backend: Node.js + Express.js
+
+Database: MongoDB (via Mongoose)
+
+Auth: Custom API Key Middleware
+
+Environment Management: dotenv
+
+Testing: Postman
+
+🧹 Notes
+Ensure your MongoDB URI is correct and accessible.
+
+
+
+
+
+
+
+
+
+
+
+
+
